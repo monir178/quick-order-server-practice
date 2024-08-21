@@ -1,6 +1,6 @@
 # Quick Order Server Starter
 
-**The repository for server-side setup for a quick order system, designed for educational purposes in the Next Level Web Development course.** This project serves as a starter pack for building server-side functionality for an order management system.
+The repository for server-side setup for a quick order system, designed specifically for educational purposes in the Next Level Web Development course. This project serves as a tutorial for integrating the AmarPay payment system into a server-side application.
 
 ---
 
