@@ -1,89 +1,86 @@
-# AmarPay Backend Integration 
-## API Documentation
+# Quick Order Server Starter
 
-## Base URL
-**Production:**  
-`https://quick-order-server.vercel.app/`
+**The repository for server-side setup for a quick order system, designed for educational purposes in the Next Level Web Development course.** This project serves as a starter pack for building server-side functionality for an order management system.
 
-## Endpoints
+---
 
-### 1. Get All Products
-- **Endpoint:** `/api/v1/product/`
-- **Method:** `GET`
-- **Description:** Retrieves a list of all available products.
-- **Request:**
-  - **URL:** `[Base URL]/api/v1/product/`
-  - **Headers:** None
-  - **Body:** None
+### **Directory Structure**
 
+```plaintext
+src/
+├── app/                     # Core application logic
+│   ├── config/              # Configuration files
+│   │   ├── db.ts            # Database configuration
+│   │   └── seed.ts          # Data seeding script
+│   └── modules/            # Application modules (e.g., order, product)
+│       ├── order/          # Order module
+│       │   ├── order.controller.ts   # Controller for order-related routes
+│       │   ├── order.model.ts        # Mongoose model for orders
+│       │   ├── order.routes.ts       # Routes for order-related endpoints
+│       │   └── order.service.ts      # Service layer for order logic
+│       └── product/        # Product module
+│           ├── product.controller.ts # Controller for product-related routes
+│           ├── product.model.ts      # Mongoose model for products
+│           ├── product.routes.ts     # Routes for product-related endpoints
+│           └── product.service.ts    # Service layer for product logic
+├── app.ts                   # Main application entry point
+└── index.ts                 # Server initialization
+.env                         # Environment variables
+```
 
-### 2. Get Product by ID
-- **Endpoint:** `/api/v1/product/:id`
-- **Method:** `GET`
-- **Description:** Retrieves details of a specific product by its ID.
-- **Request:**
-  - **URL:** `[Base URL]/api/v1/product/:id`
-  - **Path Parameter:** 
-    - `id` (string) - The ID of the product to retrieve.
-  - **Headers:** None
-  - **Body:** None
+---
 
+### **Environment Variables**
 
-### 3. Create Order
-- **Endpoint:** `/api/v1/order/create`
-- **Method:** `POST`
-- **Description:** Creates a new order with the provided user and product details.
-- **Request:**
-  - **URL:** `[Base URL]/api/v1/order/create`
-  - **Headers:** 
-    - `Content-Type: application/json`
-  - **Body:** 
-    ```json
-    {
-      "user": {
-        "name": "John Doe",
-        "email": "john.doe@example.com",
-        "phone": "+1234567890",
-        "address": "123 Elm Street, Springfield, IL, 62701"
-      },
-      "products": [
-        {
-          "product": "66c213b684e1efacd201fc7a",
-          "quantity": 2
-        },
-        {
-          "product": "66c213b684e1efacd201fc81",
-          "quantity": 1
-        }
-      ]
-    }
-    ```
-- **Response:**
-  ```json
-  {
-    "success": true,
-    "message": "Order created successfully!",
-    "data": {
-        "result": "true",
-        "payment_url": "https://sandbox.aamarpay.com/paynow.php?track=AAM1723999262542317"
-    }
-  }
-  ```
+Create a `.env` file in the root of your project directory with the following content:
 
+```plaintext
+DB_URL="YOUR MONGO URI"
+PORT=3000
+```
 
-### 4. Verify Payment
-- **Endpoint:** `/api/payment/verify`
-- **Method:** `GET`
-- **Description:** Verifies the payment status of a transaction.
-- **Request:**
-  - **URL:** `[Base URL]/api/payment/verify?transactionId=TNX-ID`
-  - **Query Parameter:** 
-    - `transactionId` (string) - The transaction ID of the payment to verify.
-  - **Headers:** None
-  - **Body:** None
+- **`DB_URL`**: The connection string for your MongoDB database.
+- **`PORT`**: The port on which the server will run.
 
+---
 
+### **Getting Started**
 
-## Notes
-- Ensure that the `transactionId` used for payment verification is accurate to avoid false verification results.
-- The payment URL generated in the response of order creation should be used to redirect users for completing their payment.
+To get started with this project, follow these steps:
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/Apollo-Level2-Web-Dev/quick-order-server-starter.git
+   ```
+
+2. **Navigate to the Project Directory:**
+
+   ```bash
+   cd quick-order-server-starter
+   ```
+
+3. **Install Dependencies:**
+
+   Make sure you have Node.js installed. Run the following command to install the required dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. **Set Up Environment Variables:**
+
+   Create a `.env` file in the root of your project directory and add the environment variables specified above.
+
+5. **Run the Development Server:**
+
+   Start the development server with:
+
+   ```bash
+   npm run dev
+   ```
+
+   The server will be available at `http://localhost:3000` (or your configured port).
+
+---
+
